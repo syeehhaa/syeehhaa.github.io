@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syaikha Amirah Zikrina — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0F1923;
+  --ink-mid: #2E3D4F;
+  --ink-muted: #5C6E82;
+  --ink-faint: #8FA0B2;
+  --surface: #F5F7FA;
+  --white: #ffffff;
+  --border: #DDE3EC;
+  --accent: #1A5FA8;
+  --accent-soft: #E8F0FB;
+  --accent-mid: #4A88CC;
+  --green: #0E6655;
+  --green-soft: #E4F4EF;
+  --slate: #344A60;
+  --amber: #7A4F1A;
+  --amber-soft: #FDF0DC;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--ink); line-height: 1.65; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: 58px;
+}
+.nav-name { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--ink); }
+.nav-pill {
+  display: inline-block; font-size: 11px; font-weight: 500;
+  background: var(--accent-soft); color: var(--accent);
+  padding: 3px 10px; border-radius: 20px; margin-left: 10px;
+}
+.nav-links { display: flex; gap: 2px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--ink-muted); font-size: 13px;
+  padding: 6px 13px; border-radius: 6px; transition: background 0.14s, color 0.14s;
+}
+.nav-links a:hover { background: var(--surface); color: var(--ink); }
+@media (max-width: 600px) { .nav-links { display: none; } }
+
+/* HERO */
+.hero {
+  padding: 96px 2.5rem 80px;
+  max-width: 860px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+}
+@media (max-width: 640px) { .hero { grid-template-columns: 1fr; padding: 60px 1.5rem 48px; } .avatar-wrap { display: none; } }
+.hero-eyebrow {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(34px, 5vw, 54px); color: var(--ink);
+  line-height: 1.12; margin-bottom: 18px;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-desc {
+  font-size: 15px; color: var(--ink-muted);
+  max-width: 440px; margin-bottom: 28px; font-weight: 300;
+}
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--ink); color: var(--white); border: none;
+  padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 500;
+  cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+  transition: opacity 0.15s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-outline {
+  background: none; color: var(--ink-mid); border: 1px solid var(--border);
+  padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 400;
+  cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+  transition: background 0.14s;
+}
+.btn-outline:hover { background: var(--white); }
+.avatar-wrap {
+  width: 160px; height: 160px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, #C8DEFA 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif; font-size: 44px; color: var(--accent);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 1px var(--border);
+  flex-shrink: 0;
+}
+
+/* MAIN */
+main { max-width: 860px; margin: 0 auto; padding: 0 2.5rem 80px; }
+@media (max-width: 600px) { main { padding: 0 1.5rem 60px; } }
+
+section { margin-top: 64px; }
+.sec-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 6px;
+}
+.sec-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px; color: var(--ink);
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+/* STATS */
+.stats-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; margin-top: 32px;
+}
+.stat-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.1rem 1.25rem;
+}
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px; color: var(--accent); line-height: 1;
+}
+.stat-label { font-size: 12px; color: var(--ink-muted); margin-top: 5px; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; } }
+.about-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+}
+.about-card.dark { background: var(--ink); border-color: var(--ink); }
+.field-label { font-size: 11px; color: var(--ink-faint); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+.about-card.dark .field-label { color: #5C7A9A; }
+.field-val { font-size: 14px; color: var(--ink); margin-bottom: 14px; }
+.field-val:last-child { margin-bottom: 0; }
+.about-card.dark .field-val { color: var(--white); }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+}
+.skill-card-head {
+  font-size: 13px; font-weight: 500; color: var(--ink);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+.skill-icon {
+  width: 26px; height: 26px; border-radius: 6px; background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center; font-size: 13px;
+}
+.skill-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.skill-name { font-size: 13px; color: var(--ink-mid); min-width: 110px; }
+.bar-bg { flex: 1; height: 4px; background: var(--surface); border-radius: 4px; overflow: hidden; }
+.bar { height: 100%; border-radius: 4px; background: var(--accent); }
+.bar.green { background: var(--green); }
+.skill-pct { font-size: 12px; color: var(--ink-faint); min-width: 28px; text-align: right; }
+
+.tag-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag {
+  font-size: 12px; padding: 4px 11px; border-radius: 20px; font-weight: 400;
+}
+.t-blue { background: var(--accent-soft); color: var(--accent); }
+.t-green { background: var(--green-soft); color: var(--green); }
+.t-slate { background: #EAF0F7; color: var(--slate); }
+.t-amber { background: var(--amber-soft); color: var(--amber); }
+
+.tools-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.25rem 1.5rem; margin-top: 14px;
+}
+.tools-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 12px; }
+
+/* EXPERIENCE */
+.exp-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  padding: 1.25rem 1.5rem; margin-bottom: 12px;
+}
+.exp-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px; flex-wrap: wrap; margin-bottom: 6px;
+}
+.exp-role { font-size: 15px; font-weight: 500; color: var(--ink); }
+.exp-date {
+  font-size: 12px; color: var(--ink-faint); white-space: nowrap;
+  background: var(--surface); padding: 3px 10px; border-radius: 20px;
+}
+.exp-company { font-size: 13px; color: var(--accent); margin-bottom: 8px; }
+.exp-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.65; }
+.exp-desc li { margin-left: 16px; margin-bottom: 4px; }
+
+/* PROJECTS */
+.proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .proj-grid { grid-template-columns: 1fr; } }
+.proj-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.proj-card:hover { box-shadow: 0 6px 20px rgba(15,25,35,0.08); transform: translateY(-2px); }
+.proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.proj-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+.proj-chip {
+  font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.chip-blue { background: var(--accent-soft); color: var(--accent); }
+.chip-green { background: var(--green-soft); color: var(--green); }
+.chip-amber { background: var(--amber-soft); color: var(--amber); }
+.proj-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; flex: 1; margin-bottom: 14px; }
+.proj-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.proj-link {
+  font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500;
+  display: flex; align-items: center; gap: 4px;
+}
+.proj-link:hover { text-decoration: underline; }
+
+/* ADD PROJECT */
+.add-card {
+  background: none; border: 1.5px dashed var(--border);
+  border-radius: 10px; padding: 1.5rem; cursor: pointer;
+  text-align: center; color: var(--ink-faint); font-size: 13px;
+  transition: background 0.14s, border-color 0.14s; width: 100%;
+  font-family: 'DM Sans', sans-serif;
+}
+.add-card:hover { background: var(--white); border-color: var(--accent-mid); color: var(--accent); }
+
+/* PUBLICATIONS */
+.pub-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.4rem 1.6rem; margin-bottom: 14px;
+}
+.pub-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 10px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.pub-venue {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--ink-faint); text-transform: uppercase;
+}
+.pub-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--ink); line-height: 1.35; margin-bottom: 8px;
+}
+.pub-meta { font-size: 12px; color: var(--ink-muted); margin-bottom: 12px; }
+.pub-meta b { color: var(--ink-mid); font-weight: 500; }
+.pub-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.65; margin-bottom: 14px; }
+.pub-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.pub-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.pub-link {
+  font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+}
+.pub-link:hover { text-decoration: underline; }
+
+/* CONTACT */
+.contact-band {
+  background: var(--ink); border-radius: 14px;
+  padding: 2.5rem 2rem; text-align: center;
+}
+.contact-band h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px; color: var(--white); margin-bottom: 10px;
+}
+.contact-band p { font-size: 14px; color: #6A8AA8; margin-bottom: 24px; }
+.contact-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.c-link {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  color: #9DBFE0; text-decoration: none; font-size: 13px;
+  padding: 9px 18px; border-radius: 8px; transition: background 0.14s;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.c-link:hover { background: rgba(255,255,255,0.15); color: #D4E8F8; }
+
+/* MODAL */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,20,35,0.55); z-index: 300;
+  align-items: center; justify-content: center; padding: 1rem;
+}
+.overlay.open { display: flex; }
+.modal {
+  background: var(--white); border-radius: 14px; padding: 2rem;
+  width: 100%; max-width: 460px;
+  box-shadow: 0 24px 64px rgba(10,20,35,0.2);
+}
+.modal h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 20px; }
+.fg { margin-bottom: 13px; }
+.fg label { display: block; font-size: 11px; font-weight: 500; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.fg input, .fg textarea, .fg select {
+  width: 100%; padding: 9px 12px; border: 1px solid var(--border);
+  border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: var(--ink); background: var(--white); outline: none;
+  transition: border-color 0.14s;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--accent); }
+.fg textarea { resize: vertical; min-height: 72px; }
+.m-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+.m-cancel {
+  background: none; border: 1px solid var(--border); color: var(--ink-muted);
+  padding: 9px 18px; border-radius: 8px; font-size: 14px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+.m-save {
+  background: var(--ink); color: var(--white); border: none;
+  padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.14s;
+}
+.m-save:hover { opacity: 0.85; }
+
+footer {
+  text-align: center; font-size: 12px; color: var(--ink-faint);
+  padding: 28px 2rem; border-top: 1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <span class="nav-name">Syaikha AZ</span>
+    <span class="nav-pill">Open to work</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <p class="hero-eyebrow">Data Analyst · Jakarta, Indonesia</p>
+    <h1>Turning data<br>into <em>decisions</em></h1>
+    <p class="hero-desc">I'm Syaikha — a data analyst with a strong background in NLP and machine learning, passionate about extracting actionable insights from complex datasets.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13,2 13,9 20,9"/></svg>
+        View projects
+      </a>
+      <a href="#contact" class="btn-outline">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get in touch
+      </a>
+    </div>
+  </div>
+  <div class="avatar-wrap">SAZ</div>
+</div>
+
+<!-- STATS BAND -->
+<div style="max-width:860px;margin:0 auto;padding:0 2.5rem;">
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-num">10K+</div>
+      <div class="stat-label">Data points analyzed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">4</div>
+      <div class="stat-label">ML models compared</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Research papers</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Languages</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="sec-label">Background</p>
+    <h2 class="sec-title">About me</h2>
+    <div class="about-grid">
+      <div class="about-card dark">
+        <div class="field-label">Name</div>
+        <div class="field-val">Syaikha Amirah Zikrina</div>
+        <div class="field-label">Location</div>
+        <div class="field-val">Jakarta, Indonesia</div>
+        <div class="field-label">Email</div>
+        <div class="field-val"><a href="mailto:amirahsyaikha@gmail.com" style="color:#4A88CC;text-decoration:none;">amirahsyaikha@gmail.com</a></div>
+        <div class="field-label">Status</div>
+        <div class="field-val" style="margin-bottom:0;">Actively seeking Data Analyst roles</div>
+      </div>
+      <div class="about-card">
+        <div class="field-label">Expertise</div>
+        <div style="margin-bottom:14px;">
+          <div class="tag-wrap">
+            <span class="tag t-blue">Text & NLP analysis</span>
+            <span class="tag t-blue">Sentiment analysis</span>
+            <span class="tag t-green">Model evaluation</span>
+            <span class="tag t-green">Data preprocessing</span>
+            <span class="tag t-slate">Statistical analysis</span>
+            <span class="tag t-amber">Data visualization</span>
+          </div>
+        </div>
+        <div class="field-label">Languages</div>
+        <div class="field-val" style="margin-bottom:0;">Indonesian (native) · English (professional)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="sec-label">Capabilities</p>
+    <h2 class="sec-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-head"><div class="skill-icon">📊</div> Analytics & data</div>
+        <div class="skill-row"><span class="skill-name">Data wrangling</span><div class="bar-bg"><div class="bar" style="width:92%"></div></div><span class="skill-pct">92%</span></div>
+        <div class="skill-row"><span class="skill-name">Statistical analysis</span><div class="bar-bg"><div class="bar" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-row"><span class="skill-name">Data visualization</span><div class="bar-bg"><div class="bar" style="width:82%"></div></div><span class="skill-pct">82%</span></div>
+        <div class="skill-row"><span class="skill-name">EDA</span><div class="bar-bg"><div class="bar" style="width:90%"></div></div><span class="skill-pct">90%</span></div>
+        <div class="skill-row"><span class="skill-name">Report writing</span><div class="bar-bg"><div class="bar" style="width:88%"></div></div><span class="skill-pct">88%</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-head"><div class="skill-icon">🤖</div> ML & NLP</div>
+        <div class="skill-row"><span class="skill-name">Text classification</span><div class="bar-bg"><div class="bar green" style="width:90%"></div></div><span class="skill-pct">90%</span></div>
+        <div class="skill-row"><span class="skill-name">Sentiment analysis</span><div class="bar-bg"><div class="bar green" style="width:88%"></div></div><span class="skill-pct">88%</span></div>
+        <div class="skill-row"><span class="skill-name">SVM / TF-IDF</span><div class="bar-bg"><div class="bar green" style="width:87%"></div></div><span class="skill-pct">87%</span></div>
+        <div class="skill-row"><span class="skill-name">BERT / Transformers</span><div class="bar-bg"><div class="bar green" style="width:78%"></div></div><span class="skill-pct">78%</span></div>
+        <div class="skill-row"><span class="skill-name">Model evaluation</span><div class="bar-bg"><div class="bar green" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
+      </div>
+    </div>
+    <div class="tools-card">
+      <div class="tools-title">Tools & technologies</div>
+      <div class="tag-wrap">
+        <span class="tag t-blue">Python</span>
+        <span class="tag t-blue">Pandas</span>
+        <span class="tag t-blue">NumPy</span>
+        <span class="tag t-blue">Scikit-learn</span>
+        <span class="tag t-blue">PyTorch</span>
+        <span class="tag t-green">Matplotlib</span>
+        <span class="tag t-green">Seaborn</span>
+        <span class="tag t-green">HuggingFace</span>
+        <span class="tag t-slate">Google Colab</span>
+        <span class="tag t-slate">Kaggle</span>
+        <span class="tag t-slate">NLTK / Sastrawi</span>
+        <span class="tag t-amber">YouTube Data API</span>
+        <span class="tag t-amber">SQL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="sec-label">Background</p>
+    <h2 class="sec-title">Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Independent Researcher — NLP & Text Analysis</span>
+        <span class="exp-date">2024 – Present</span>
+      </div>
+      <div class="exp-company">Self-directed research · Jakarta, Indonesia</div>
+      <div class="exp-desc">
+        <ul>
+          <li>Designed and executed comparative analysis of 4 ML models (IndoBERT, IndoRoBERTa, SVM variants) on 10K+ Indonesian game chat samples</li>
+          <li>Built full data pipeline: collection, deduplication, preprocessing, feature extraction, and evaluation</li>
+          <li>Developed robustness evaluation framework using Macro-F1 Drop metric under noisy-text conditions</li>
+          <li>Authored research paper covering error analysis, confusion matrix interpretation, and model behavior insights</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item" style="border-left-color: var(--green);">
+      <div class="exp-header">
+        <span class="exp-role">Research Collaborator — Sentiment Analysis</span>
+        <span class="exp-date">Nov 2025</span>
+      </div>
+      <div class="exp-company">Team of 3 · Jakarta, Indonesia</div>
+      <div class="exp-desc">
+        <ul>
+          <li>Crawled YouTube comment data via YouTube Data API and built labeled dataset for 3-class sentiment classification</li>
+          <li>Applied SVM + TF-IDF pipeline to classify public opinion on government food program (MBG)</li>
+          <li>Performed manual annotation, data cleaning, normalization, stemming, and model evaluation using F1-score</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="exp-list"></div>
+
+    <button class="add-card" onclick="openExpModal()" style="margin-top:4px;">
+      + Add experience
+    </button>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="sec-label">Work samples</p>
+    <h2 class="sec-title">Projects</h2>
+    <div class="proj-grid" id="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Toxic chat detection — Indonesian game chat</span>
+          <span class="proj-chip chip-blue">NLP</span>
+        </div>
+        <p class="proj-desc">Evaluated 4 models (IndoBERT, IndoRoBERTa, Word & Char TF-IDF + SVM) on 10K+ samples. Measured robustness under clean vs. noisy-text with Macro-F1 Drop. IndoBERT scored best (F1 0.8632); Char SVM was most robust (drop 0.0288).</p>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="tag t-blue">Python</span>
+            <span class="tag t-blue">BERT</span>
+            <span class="tag t-slate">SVM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Sentiment analysis — YouTube MBG comments</span>
+          <span class="proj-chip chip-green">Sentiment</span>
+        </div>
+        <p class="proj-desc">Scraped and manually labeled YouTube comments about Indonesia's Makan Bergizi Gratis program. Built SVM + TF-IDF classifier for 3-class sentiment (positive/neutral/negative) with full preprocessing pipeline.</p>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="tag t-green">SVM</span>
+            <span class="tag t-green">TF-IDF</span>
+            <span class="tag t-slate">YouTube API</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">CNN experiments — detection, segmentation, reconstruction</span>
+          <span class="proj-chip chip-amber">Computer vision</span>
+        </div>
+        <p class="proj-desc">Compared YOLOv8 vs Faster R-CNN (object detection), FCN-8s vs U-Net (semantic segmentation), and DAE vs VAE (image reconstruction) across PASCAL VOC 2007, CamVid, and CelebA datasets.</p>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="tag t-amber">PyTorch</span>
+            <span class="tag t-amber">YOLO</span>
+            <span class="tag t-slate">U-Net</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Hate speech detection — Indonesian Twitter/X</span>
+          <span class="proj-chip chip-blue">NLP</span>
+        </div>
+        <p class="proj-desc">Combined Graph Neural Networks (GCN) with TF-IDF feature extraction to detect hate speech and abusive content across 13,169 manually labeled Indonesian tweets. GNN reached 92.90% accuracy (Abusive) and 89.78% (Hate Speech), outperforming an RNN baseline at ~86%. Published in Jurnal RESTI, SINTA 2.</p>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="tag t-blue">Python</span>
+            <span class="tag t-blue">GNN</span>
+            <span class="tag t-slate">TF-IDF</span>
+          </div>
+          <a href="https://doi.org/10.29207/resti.v9i1.6179" class="proj-link" target="_blank">
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View paper
+          </a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-title">Cyberbullying detection — GCN vs. GAT</span>
+          <span class="proj-chip chip-amber">Graph ML</span>
+        </div>
+        <p class="proj-desc">Benchmarked Graph Convolutional Networks (GCN) against Graph Attention Networks (GAT) for cyberbullying detection on social media text, tuning across 20–200 training epochs. GCN achieved 94.87% accuracy and 91.39% F1-score, outperforming GAT's 87.79% accuracy and 79.27% F1-score. Presented at IEEE ICADEIS 2025.</p>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="tag t-amber">Python</span>
+            <span class="tag t-amber">GCN</span>
+            <span class="tag t-slate">GAT</span>
+          </div>
+          <a href="https://doi.org/10.1109/ICADEIS65852.2025.10933470" class="proj-link" target="_blank">
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View paper
+          </a>
+        </div>
+      </div>
+
+      <button class="add-card" onclick="openProjModal()">
+        + Add project
+      </button>
+
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <p class="sec-label">Peer-reviewed work</p>
+    <h2 class="sec-title">Publications</h2>
+
+    <div class="pub-card">
+      <div class="pub-top">
+        <span class="pub-venue">Jurnal RESTI · Vol 9, No 1 (2025) · Accredited SINTA 2</span>
+        <a href="https://doi.org/10.29207/resti.v9i1.6179" class="pub-link" target="_blank">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          doi.org/10.29207/resti.v9i1.6179
+        </a>
+      </div>
+      <div class="pub-title">Advancing Hate Speech Detection in Indonesian Language Using Graph Neural Networks and TF-IDF</div>
+      <div class="pub-meta"><b>Syaikha Amirah Zikrina</b>, Fitriyani · Telkom University · Published Feb 2025</div>
+      <p class="pub-desc">Proposed a Graph Neural Network (GCN) approach with TF-IDF feature weighting to detect hate speech and abusive language in 13,169 manually labeled Indonesian tweets, building a similarity graph from cosine distances between TF-IDF vectors. The GNN model reached 92.90% accuracy for Abusive and 89.78% for Hate Speech, clearly ahead of an RNN baseline at 86.09% / 86.15%, showing the value of relational, graph-based representations for short, informal text.</p>
+      <div class="pub-footer">
+        <div class="pub-tags">
+          <span class="tag t-blue">Graph Neural Network</span>
+          <span class="tag t-blue">TF-IDF</span>
+          <span class="tag t-slate">RNN</span>
+          <span class="tag t-amber">Indonesian NLP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-top">
+        <span class="pub-venue">IEEE ICADEIS 2025</span>
+        <a href="https://doi.org/10.1109/ICADEIS65852.2025.10933470" class="pub-link" target="_blank">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          doi.org/10.1109/ICADEIS65852.2025.10933470
+        </a>
+      </div>
+      <div class="pub-title">Improving Cyberbullying Detection with Graph Neural Network Approaches</div>
+      <div class="pub-meta"><b>Syaikha Amirah Zikrina</b>, Fitriyani · Telkom University · 2025</div>
+      <p class="pub-desc">Compared Graph Convolutional Networks (GCN) and Graph Attention Networks (GAT) for cyberbullying detection on social media text, after text normalization and TF-IDF feature extraction, across training runs from 20 to 200 epochs. GCN consistently outperformed GAT, peaking at 94.87% accuracy and 91.39% F1-score versus GAT's 87.79% accuracy and 79.27% F1-score, with recall identified as GCN's strongest margin of advantage.</p>
+      <div class="pub-footer">
+        <div class="pub-tags">
+          <span class="tag t-green">GCN</span>
+          <span class="tag t-green">GAT</span>
+          <span class="tag t-slate">TF-IDF</span>
+          <span class="tag t-amber">Cyberbullying</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="sec-label">Let's connect</p>
+    <h2 class="sec-title">Contact</h2>
+    <div class="contact-band">
+      <h3>Open to opportunities</h3>
+      <p>Looking for Data Analyst roles where I can apply NLP and analytical skills to solve real business problems.</p>
+      <div class="contact-links">
+        <a href="mailto:amirahsyaikha@gmail.com" class="c-link">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          amirahsyaikha@gmail.com
+        </a>
+        <a href="https://linkedin.com" class="c-link" target="_blank">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/syeehhaa" class="c-link" target="_blank">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2025 Syaikha Amirah Zikrina · Data Analyst</footer>
+
+<!-- PROJECT MODAL -->
+<div class="overlay" id="proj-modal" onclick="closeOnBg(event,'proj-modal')">
+  <div class="modal">
+    <h3>Add project</h3>
+    <div class="fg"><label>Title</label><input id="p-title" placeholder="e.g. Customer churn analysis" /></div>
+    <div class="fg"><label>Description</label><textarea id="p-desc" placeholder="What you did, tools used, key results..."></textarea></div>
+    <div class="fg"><label>Category</label>
+      <select id="p-type">
+        <option value="blue">NLP / Text</option>
+        <option value="green">Sentiment / Social</option>
+        <option value="amber">Data Analysis</option>
+      </select>
+    </div>
+    <div class="fg"><label>Tags (comma separated)</label><input id="p-tags" placeholder="Python, Pandas, SQL" /></div>
+    <div class="m-actions">
+      <button class="m-cancel" onclick="document.getElementById('proj-modal').classList.remove('open')">Cancel</button>
+      <button class="m-save" onclick="addProject()">Add project</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE MODAL -->
+<div class="overlay" id="exp-modal" onclick="closeOnBg(event,'exp-modal')">
+  <div class="modal">
+    <h3>Add experience</h3>
+    <div class="fg"><label>Role / title</label><input id="e-role" placeholder="e.g. Data Analyst Intern" /></div>
+    <div class="fg"><label>Company / organization</label><input id="e-company" placeholder="e.g. PT. Contoh Indonesia" /></div>
+    <div class="fg"><label>Period</label><input id="e-date" placeholder="e.g. Jan 2024 – Jun 2024" /></div>
+    <div class="fg"><label>Key responsibilities</label><textarea id="e-desc" placeholder="What you did and achieved..."></textarea></div>
+    <div class="m-actions">
+      <button class="m-cancel" onclick="document.getElementById('exp-modal').classList.remove('open')">Cancel</button>
+      <button class="m-save" onclick="addExp()">Add experience</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const chipMap = { blue: 'chip-blue', green: 'chip-green', amber: 'chip-amber' };
+const chipLabel = { blue: 'NLP', green: 'Sentiment', amber: 'Data Analysis' };
+const tagClass = { blue: 't-blue', green: 't-green', amber: 't-amber' };
+
+function openProjModal() { document.getElementById('proj-modal').classList.add('open'); }
+function openExpModal() { document.getElementById('exp-modal').classList.add('open'); }
+function closeOnBg(e, id) { if (e.target === document.getElementById(id)) document.getElementById(id).classList.remove('open'); }
+
+function addProject() {
+  const title = document.getElementById('p-title').value.trim();
+  const desc = document.getElementById('p-desc').value.trim();
+  const type = document.getElementById('p-type').value;
+  const tags = document.getElementById('p-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+  if (!title) return;
+  const tc = tagClass[type];
+  const tagHTML = tags.map(t => `<span class="tag ${tc}">${t}</span>`).join('');
+  const card = document.createElement('div');
+  card.className = 'proj-card';
+  card.innerHTML = `
+    <div class="proj-top">
+      <span class="proj-title">${title}</span>
+      <span class="proj-chip ${chipMap[type]}">${chipLabel[type]}</span>
+    </div>
+    <p class="proj-desc">${desc || '—'}</p>
+    <div class="proj-footer"><div class="proj-tags">${tagHTML}</div></div>
+  `;
+  const grid = document.getElementById('proj-grid');
+  grid.insertBefore(card, grid.lastElementChild);
+  ['p-title','p-desc','p-tags'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('proj-modal').classList.remove('open');
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function addExp() {
+  const role = document.getElementById('e-role').value.trim();
+  const company = document.getElementById('e-company').value.trim();
+  const date = document.getElementById('e-date').value.trim();
+  const desc = document.getElementById('e-desc').value.trim();
+  if (!role) return;
+  const item = document.createElement('div');
+  item.className = 'exp-item';
+  item.innerHTML = `
+    <div class="exp-header">
+      <span class="exp-role">${role}</span>
+      ${date ? `<span class="exp-date">${date}</span>` : ''}
+    </div>
+    ${company ? `<div class="exp-company">${company}</div>` : ''}
+    ${desc ? `<div class="exp-desc">${desc}</div>` : ''}
+  `;
+  document.getElementById('exp-list').appendChild(item);
+  ['e-role','e-company','e-date','e-desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('exp-modal').classList.remove('open');
+  item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>
